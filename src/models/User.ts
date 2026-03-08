@@ -1,3 +1,4 @@
+// Represents the user object returned from the backend after resolving the QR token
 export interface User {
   user_id: string;
   full_name: string;

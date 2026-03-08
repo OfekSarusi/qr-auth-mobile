@@ -15,29 +15,43 @@ import { useSession } from "../src/context/SessionContext";
 import { validatePassword } from "../src/services/authService";
 
 export default function LoginScreen() {
+  // Get the resolved user from session and a function to update auth state
   const { user, setIsAuthenticated } = useSession();
+
+  // Local state for the password input and loading indicator
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    // Prevent login attempt if no user was loaded from the QR flow
     if (!user) {
       Alert.alert("Error", "No user data found");
       return;
     }
 
+    // check that the password field is not empty
+    if (!password.trim()) {
+      Alert.alert("Error", "Please enter a password");
+      return;
+    }
+
     try {
       setLoading(true);
+      // Send user id and password to backend for validation
       const result = await validatePassword(user.user_id, password);
 
       if (result.authenticated) {
+        // Mark session as authenticated and move to success screen
         setIsAuthenticated(true);
         router.replace("/success");
       } else {
+        // Invalid password - navigate to error screen
         router.replace("/error");
       }
     } catch (error) {
       router.replace("/error");
     } finally {
+      // Always stop loading after request completes
       setLoading(false);
     }
   };
@@ -77,6 +91,7 @@ export default function LoginScreen() {
         />
 
         {loading ? (
+          // Show spinner during API request
           <ActivityIndicator size="large" />
         ) : (
           <TouchableOpacity style={styles.button} onPress={handleLogin}>

@@ -1,6 +1,7 @@
 import { AuthResponse } from "../models/Auth";
 import { api } from "./api";
 
+// Sends the user's password to the backend for authentication
 export async function validatePassword(
   userId: string,
   password: string

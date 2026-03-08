@@ -4,14 +4,17 @@ import { useSession } from "../../src/context/SessionContext";
 import { formatDate } from "../../src/utils/formatDate";
 
 export default function HomeScreen() {
+  // Retrieve authenticated user data from session context
   const { user, setUser, setIsAuthenticated } = useSession();
 
   const handleLogout = () => {
+    // Clear user session and return to root screen
     setUser(null);
     setIsAuthenticated(false);
     router.replace("/");
   };
 
+  // Fallback UI in case user data is missing
   if (!user) {
     return (
       <View style={styles.container}>

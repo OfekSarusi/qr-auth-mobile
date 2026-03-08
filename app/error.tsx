@@ -2,6 +2,7 @@ import { router } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function ErrorScreen() {
+  // Display authentication failure message and allow user to retry login
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -12,7 +13,7 @@ export default function ErrorScreen() {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.replace("/login")}
+          onPress={() => router.replace("/login")} // navigate back to login screen
         >
           <Text style={styles.buttonText}>Try Again</Text>
         </TouchableOpacity>

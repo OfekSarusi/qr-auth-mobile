@@ -4,11 +4,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function SuccessScreen() {
 
+  // Automatically redirect the user to the home screen after a short delay
   useEffect(() => {
     const timer = setTimeout(() => {
       router.replace("/(tabs)/home");
     }, 1500);
 
+    // Clean up timer if the component unmounts
     return () => clearTimeout(timer);
   }, []);
 

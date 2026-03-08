@@ -4,6 +4,7 @@ import * as Localization from "expo-localization";
 import { Platform, StyleSheet, Text, View } from "react-native";
 
 export default function DeviceScreen() {
+  // Display device and environment information using Expo APIs
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Device Information</Text>

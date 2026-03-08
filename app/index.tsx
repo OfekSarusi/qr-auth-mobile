@@ -13,13 +13,21 @@ import { useSession } from "../src/context/SessionContext";
 import { resolveQrToken } from "../src/services/qrService";
 
 export default function QRScreen() {
+  // Camera permission state and function to request access
   const [permission, requestPermission] = useCameraPermissions();
+
+  // Local UI state for scan flow
   const [scanned, setScanned] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Prevents duplicate scans while processing the current QR code
   const scanningLock = useRef(false);
+
+  // Save the resolved user in the global session
   const { setUser } = useSession();
 
   const handleBarCodeScanned = async ({ data }: { data: string }) => {
+    // Ignore additional scans while a request is already in progress
     if (scanningLock.current || loading) return;
 
     scanningLock.current = true;
@@ -27,18 +35,27 @@ export default function QRScreen() {
     setLoading(true);
 
     try {
+      // Normalize scanned QR content before sending it to the backend
       const token = data.trim();
 
       console.log("Scanned raw data:", data);
       console.log("Resolved token:", token);
 
+      // Resolve the QR token into user data
       const user = await resolveQrToken(token);
+
+      // Store user data globally for the next screens
       setUser(user);
 
+      // Navigate to password authentication screen
       router.push("/login");
-    } catch (error) {
+    } 
+    
+    catch (error) {
       console.log("QR resolve error:", error);
       Alert.alert("Error", "Failed to resolve QR token");
+
+      // Allow scanning again after a failed request
       setScanned(false);
       scanningLock.current = false;
     } finally {
@@ -46,6 +63,7 @@ export default function QRScreen() {
     }
   };
 
+  // Still checking camera permission state
   if (!permission) {
     return (
       <View style={styles.centered}>
@@ -54,6 +72,7 @@ export default function QRScreen() {
     );
   }
 
+  // Ask the user for camera permission if not granted yet
   if (!permission.granted) {
     return (
       <View style={styles.centered}>
@@ -81,8 +100,10 @@ export default function QRScreen() {
         />
       </View>
 
+      {/* Show loading indicator while resolving the QR token */}
       {loading && <ActivityIndicator size="large" style={styles.loader} />}
 
+      {/* Allow the user to reset the scan state and scan again */}
       {scanned && !loading && (
         <TouchableOpacity
           style={styles.secondaryButton}

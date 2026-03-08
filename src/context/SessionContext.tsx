@@ -8,10 +8,14 @@ type SessionContextType = {
   setIsAuthenticated: (value: boolean) => void;
 };
 
+// Global session context for storing authenticated user and auth state
 const SessionContext = createContext<SessionContextType | undefined>(undefined);
 
+// Provides session data to the entire application
 export function SessionProvider({ children }: { children: ReactNode }) {
+  // Stores the authenticated user returned from the backend
   const [user, setUser] = useState<User | null>(null);
+  // Indicates whether the user successfully authenticated
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
@@ -23,6 +27,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// Custom hook to access the session context
 export function useSession() {
   const context = useContext(SessionContext);
 

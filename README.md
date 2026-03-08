@@ -6,7 +6,7 @@ The application demonstrates a complete mobile authentication flow based on **QR
 
 ---
 
-# Application Flow
+## Application Flow
 
 1. The application starts on a **QR scanning screen**.
 2. The user scans a QR code containing a **QR token**.
@@ -29,7 +29,7 @@ POST /auth/validate
 
 ---
 
-# Features
+## Features
 
 * QR code scanning
 * Backend API communication
@@ -42,10 +42,13 @@ POST /auth/validate
 * Clean and modular architecture
 
 ---
+## Application Demo
+Watch the application demo:
+[Application Demo Video](https://drive.google.com/file/d/11F77g919nXJkqtJsGZH30X66uzDjpK57/view?usp=sharing)
 
-# Tech Stack
+## Tech Stack
 
-## Mobile Application
+### Mobile Application
 
 * React Native
 * Expo
@@ -53,7 +56,7 @@ POST /auth/validate
 * TypeScript
 * Axios
 
-## Backend (Provided)
+### Backend (Provided)
 
 * Python
 * FastAPI
@@ -61,7 +64,7 @@ POST /auth/validate
 
 ---
 
-# Architecture
+## Architecture
 
 The project follows a simple layered structure separating UI, business logic, and API communication.
 
@@ -76,7 +79,7 @@ backend/        → Mock FastAPI backend server
 
 ---
 
-# Project Structure
+## Project Structure
 
 ```
 unixi-app/
@@ -122,7 +125,7 @@ unixi-app/
 
 ---
 
-# Backend API
+## Backend API
 
 The mobile application communicates with the provided backend using the following endpoints.
 
@@ -166,7 +169,7 @@ Used to verify that the backend server is running.
 
 ---
 
-# Running the Backend
+## Running the Backend
 
 Navigate to the backend folder:
 
@@ -194,7 +197,7 @@ http://localhost:8080
 
 ---
 
-# Running the Mobile App
+## Running the Mobile App
 
 Install dependencies:
 
@@ -214,7 +217,7 @@ Make sure your **phone and computer are connected to the same WiFi network**.
 
 ---
 
-# API Configuration
+## API Configuration
 
 The mobile app communicates with the backend through the base URL defined in:
 
@@ -232,7 +235,7 @@ Replace this with your computer's **local IPv4 address** if needed.
 
 ---
 
-# Demo Credentials
+## Demo Credentials
 
 Example users for testing authentication:
 
@@ -257,7 +260,7 @@ These tokens can be encoded into QR codes for testing.
 
 ---
 
-# Notes
+## Notes
 
 * The backend server is provided as part of the assignment.
 * The application communicates with the backend using REST APIs.
@@ -265,7 +268,7 @@ These tokens can be encoded into QR codes for testing.
 
 ---
 
-# Author
+## Author
 
 Ofek Sarusi
 Junior Mobile Developer Assignment

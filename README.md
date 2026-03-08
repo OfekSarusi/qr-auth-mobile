@@ -271,4 +271,3 @@ These tokens can be encoded into QR codes for testing.
 ## Author
 
 Ofek Sarusi
-Junior Mobile Developer Assignment
